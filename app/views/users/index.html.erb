@@ -1,7 +1,7 @@
 <h1>Users</h1>
 <% @users.each do |user| %>
 <div>
-  <p><%= image_tag('no_image.jpg') %></p>
+  <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size: '60x60' %>
   <p><%= user.name %></p>
   <%= link_to "Show", user_path(user) %>
 </div>
