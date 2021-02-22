@@ -1,7 +1,7 @@
 <div class="container px-5">
   <div class="row">
     <div class="col-md-3">
-      
+
      <%= render 'users/profile', user: current_user %>
      <%= render 'books/list', user: @user, book:@booknew %>
     </div>
@@ -37,7 +37,7 @@
           </td>
           <td>
           <% if @book.user == current_user %>
-          <%= link_to "Destroy", book_path(@book), method: :delete, class: 'link text-light btn btn-danger btm-sm  px-1' %>
+          <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'link text-light btn btn-danger btm-sm  px-1' %>
           <% end %>
           </td>
         </tr>
