@@ -7,10 +7,8 @@
       <P>about various books!</P>
       <div class="col-10 mx-auto">
         <div class="row">
-          <button type="button" class="btn btn-info btm-sm btn-block mb-3"><%= link_to "login", new_user_session_path , class: 'link text-light'%></button>
-        </div>
-        <div class="row">
-          <button type="button" class="btn btn-success btm-sm btn-block "><%= link_to "Sign Up", new_user_registration_path, class: 'link text-light' %></button>
+          <%= link_to "login", new_user_session_path , class: 'link text-light btn btn-info btm-sm btn-block mb-3 '%>
+          <%= link_to "Sign Up", new_user_registration_path, class: 'link text-light btn btn-success btm-sm btn-block ' %>
         </div>
       </div>
     </div>

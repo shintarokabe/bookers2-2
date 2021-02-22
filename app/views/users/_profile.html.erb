@@ -1,0 +1,20 @@
+<h2>User info</h2>
+  <div>
+    <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'100x100' %>
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td class='pl-2'><%= user.name %></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>introduction</td>
+        <td class='pl-2'><%= user.introduction %></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p><%= link_to "edit user", edit_user_path(current_user.id), class: 'link btn btn-outline-secondary btm-sm btn-block' %></p>

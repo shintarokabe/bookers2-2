@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'homes/show'
   get 'users/index'
   get 'users/show'
   root to: 'homes#top'
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :books, only: [:new, :create, :index, :show, :destroy, :edit, :update]
 
-
+  resources :homes, only: [:top, :show]
 end

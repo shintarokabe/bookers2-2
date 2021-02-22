@@ -5,22 +5,25 @@ def new
 end
 
 def create
-  @book = Book.new(book_params)
-  @book.user_id = current_user.id
-  if @book.save
+  @booknew = Book.new(book_params)
+  @booknew.user_id = current_user.id
+  if @booknew.save
     redirect_to books_path, notice: "You have created book successfully."
   else
-    render :new, notice: "You have something error!"
+    render :index, notice: "You have something error!"
   end
 end
 
 def index
   #@books = Book.all
+  @booknew = Book.new
   @books = Book.page(params[:page]).reverse_order
 end
 
 def show
   @book = Book.find(params[:id])
+  @user = @book.user
+  @booknew = Book.new
 end
 
 def destroy
