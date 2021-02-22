@@ -7,8 +7,11 @@ end
 def create
   @book = Book.new(book_params)
   @book.user_id = current_user.id
-  @book.save
-  redirect_to books_path
+  if @book.save
+    redirect_to books_path, notice: "You have created book successfully."
+  else
+    render :new, notice: "You have something error!"
+  end
 end
 
 def index
@@ -32,8 +35,11 @@ end
 
 def update
   @book = Book.find(params[:id])
-  @book.update(book_params)
-  redirect_to books_path
+   if @book.update(book_params)
+    redirect_to books_path, notice: "You have updated book successfully."
+   else
+    render :edit, notice: "You have something error!"
+   end
 end
 
 private

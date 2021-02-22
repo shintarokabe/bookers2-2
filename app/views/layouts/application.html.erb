@@ -4,38 +4,87 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p><%= link_to "New Book", new_book_path %></p>
-    <p><%= link_to "Top", root_path %></p>
+<body class="d-flex flex-column vh-100 ">
+  <header class="bg-dark font-weight-bold" >
+    <nav class="nvbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <div class="row">
+          <a class="navbar-brand col-1" href="/"><%= link_to "Bookers", root_path, class: 'nav-link text-light' %></a>
+          <div class="ull-right">
+          <button class="navbar-toggler col-7" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown text-right">
+            <ul class="navbar-nav ">
+              <% if user_signed_in? %>
+               <li>
+                 <%= link_to "home", root_path, class: 'nav-link text-light'%>
+               </li>
+              <li>
+                <%= link_to "Users", users_path, class: 'nav-link text-light' %>
+              </li>
+              <li>
+                <%= link_to "Books", books_path, class: 'nav-link text-light' %>
+              </li>
+              <li>
+                <%= link_to "log out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+              </li>
+              <% else %>
+               <li>
+                 <%= link_to "home", root_path, class: 'nav-link text-light' %>
+               </li>
+              <li>
+                <a>About</a>
+              </li>
+              <li>
+                <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-light' %>
+              </li>
+              <li>
+                <%= link_to "log in", new_user_session_path, class: 'nav-link text-light' %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+          </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+      <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col-11">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  </main>
 
 
-    <% if user_signed_in? %>
-      <p><%= link_to "edit user", edit_user_path(current_user.id) %></p>
-      <li>
-        <%= link_to "Users", users_path %>
-      </li>
-      <li>
-        <%= link_to "Books", books_path %>
-      </li>
-      <li>
-        <%= link_to "log out", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <a>About</a>
-      </li>
-      <li>
-        <%= link_to "Sign Up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "log in", new_user_session_path %>
-      </li>
-    <% end %>
-    <%= yield %>
-  </body>
+  <footer class="bg-white">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
